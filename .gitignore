@@ -1,0 +1,7 @@
+vendor/
+.env
+public/uploads/*
+public/qr/*
+storage/*
+scratch/
+!.gitignore
