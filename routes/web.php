@@ -70,6 +70,7 @@ Router::group('', ['AuthMiddleware'], function () {
     Router::get('/equipment', ['EquipmentController', 'index']);
     Router::get('/equipment/create', ['EquipmentController', 'create']);
     Router::post('/equipment', ['EquipmentController', 'store']);
+    Router::get('/equipment/import-template', ['EquipmentController', 'importTemplate']);
     Router::get('/equipment/export-pdf', ['EquipmentController', 'exportPdf']);
     Router::post('/equipment/import-file', ['EquipmentController', 'importChoiceFile']);
     Router::get('/equipment/print-qr', ['EquipmentController', 'printQr']);

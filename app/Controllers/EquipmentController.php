@@ -418,6 +418,63 @@ class EquipmentController extends BaseController
     }
 
     /**
+     * Download a CSV template matching the equipment import columns.
+     */
+    public function importTemplate(): void
+    {
+        $headers = [
+            'Asset Tag',
+            'Property Code',
+            'Name',
+            'Category',
+            'Classification',
+            'Laboratory',
+            'Brand',
+            'Model',
+            'Serial Number',
+            'Purchase Cost',
+            'Status',
+        ];
+
+        header('Content-Type: text/csv; charset=UTF-8');
+        header('Content-Disposition: attachment; filename="equipment-import-template.csv"');
+        header('Cache-Control: no-store, no-cache, must-revalidate');
+
+        $output = fopen('php://output', 'w');
+        // UTF-8 BOM helps Excel recognize the file encoding correctly.
+        fwrite($output, "\xEF\xBB\xBF");
+        fputcsv($output, $headers);
+        fputcsv($output, [
+            'EXAMPLE-EQ-001',
+            'PROP-2026-EXAMPLE-001',
+            'Dell OptiPlex 7090 Desktop',
+            'System Unit',
+            'ICT Equipment',
+            'Computer Laboratory 1',
+            'Dell',
+            'OptiPlex 7090',
+            'EXAMPLE-SN-001',
+            '45000.00',
+            'active',
+        ]);
+        fputcsv($output, [
+            'EXAMPLE-EQ-002',
+            'PROP-2026-EXAMPLE-002',
+            '24-inch LED Monitor',
+            'Monitor',
+            'ICT Equipment',
+            'Computer Laboratory 1',
+            'Dell',
+            'P2422H',
+            'EXAMPLE-SN-002',
+            '12500.00',
+            'active',
+        ]);
+        fclose($output);
+        exit;
+    }
+
+    /**
      * Property Code Print & Export to PDF
      */
     public function exportPdf(): void

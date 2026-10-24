@@ -34,7 +34,7 @@ $isCustodian = ($roleId === 3);
 
         <?php if (!$isHR): ?>
         <a href="/laboratories" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 <?= str_contains($currentUrl, 'laboratories') ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700/50' ?>">
-            <i data-lucide="flask-conical" class="w-5 h-5"></i>
+            <i data-lucide="monitor" class="w-5 h-5"></i>
             <span>Laboratories</span>
         </a>
 

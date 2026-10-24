@@ -4,7 +4,7 @@
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Laboratories</h1>
-            <p class="text-gray-500 dark:text-gray-400 mt-1">Manage computer laboratories</p>
+            <p class="text-gray-500 dark:text-gray-400 mt-1">Manage laboratories and their resources</p>
         </div>
         <div class="flex items-center space-x-3">
             <a href="/laboratories/print-qr" class="inline-flex items-center space-x-2 px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium rounded-xl text-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
@@ -29,9 +29,18 @@
         <?php foreach ($laboratories as $lab): ?>
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow">
             <div class="p-6">
+                <?php
+                    $labText = strtolower(($lab['name'] ?? '') . ' ' . ($lab['description'] ?? ''));
+                    $isComputerLab = preg_match('/computer|ict|information technology|programming|network|multimedia|software|hardware/', $labText);
+                    $isMedicalLab = preg_match('/medicine|medical|pharmacy|pharma|nursing|biology|biomedical/', $labText);
+                    $labIcon = $isComputerLab ? 'monitor' : ($isMedicalLab ? 'pill' : 'flask-conical');
+                    $labIconColor = $isComputerLab
+                        ? 'text-blue-600 dark:text-blue-400'
+                        : ($isMedicalLab ? 'text-rose-600 dark:text-rose-400' : 'text-primary-600 dark:text-primary-400');
+                ?>
                 <div class="flex items-center justify-between mb-4">
                     <div class="w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                        <i data-lucide="flask-conical" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+                        <i data-lucide="<?= $labIcon ?>" class="w-5 h-5 <?= $labIconColor ?>"></i>
                     </div>
                     <span class="px-2.5 py-1 text-xs font-medium rounded-full <?= $lab['status'] === 'active' ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400' ?>">
                         <?= ucfirst($lab['status']) ?>

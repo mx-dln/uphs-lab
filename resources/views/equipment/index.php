@@ -18,6 +18,10 @@ $classifications = $classifications ?? \App\Helpers\Constants::EQUIPMENT_CLASSIF
                 <i data-lucide="file-up" class="w-4 h-4 text-emerald-600"></i>
                 <span>Import Choice File</span>
             </button>
+            <a href="/equipment/import-template" class="inline-flex items-center space-x-2 px-3.5 py-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl text-xs font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm transition-all">
+                <i data-lucide="download" class="w-4 h-4 text-blue-600"></i>
+                <span>CSV Template</span>
+            </a>
             <?php endif; ?>
 
             <!-- Export to PDF Button -->
